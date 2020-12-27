@@ -15,7 +15,13 @@ class CreateBlackoutsTable extends Migration
     {
         Schema::create('blackouts', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('zona_id');
+            $table->date('FechaInicio');
+            $table->time('HoraInicio', 0);
+            $table->date('FechaFinal');
+            $table->time('HoraFinal', 0);
+            $table->longText('description')->nullable();
+            $table->foreign('zona_id')->references('id')->on('zonas');
         });
     }
 
