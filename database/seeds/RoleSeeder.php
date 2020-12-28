@@ -23,12 +23,12 @@ class RoleSeeder extends Seeder
         $role3 = Role::create(['name' => 'super-admin']); // gets all permissions via Gate::before rule; see AuthServiceProvider
 
         //definir las acciones en funcion a los requisitos del sistema
-        $permission1 = Permission::create(['name' => 'Agregar clientes']);
-        $permission2 = Permission::create(['name' => 'Modificar clientes']);
-        $permission3 = Permission::create(['name' => 'Eliminar clientes']);
-        $permission4 = Permission::create(['name' => 'Agregar categorias']);
-        $permission5 = Permission::create(['name' => 'Modificar categorias']);
-        $permission6 = Permission::create(['name' => 'Eliminar categorias']);
+        $permission1 = Permission::create(['name' => 'Agregar zonas']);
+        $permission2 = Permission::create(['name' => 'Modificar zonas']);
+        $permission3 = Permission::create(['name' => 'Eliminar zonas']);
+        $permission4 = Permission::create(['name' => 'Agregar apagon']);
+        $permission5 = Permission::create(['name' => 'Modificar apagon']);
+        $permission6 = Permission::create(['name' => 'Eliminar apagon']);
 
         $roleAdmin->givePermissionTo($permission1, $permission2, $permission3, $permission4, $permission5, $permission6);
         $roleCliente->givePermissionTo($permission2, $permission5);

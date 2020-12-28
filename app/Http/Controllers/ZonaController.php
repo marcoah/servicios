@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Zonas;
+use App\Zona;
 use Illuminate\Http\Request;
 
 class ZonaController extends Controller
@@ -14,7 +14,8 @@ class ZonaController extends Controller
      */
     public function index()
     {
-        //
+        $zonas = Zona::orderBy('id', 'asc')->paginate(10);
+        return view('zonas.index',compact('zonas'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +25,7 @@ class ZonaController extends Controller
      */
     public function create()
     {
-        //
+        return view('zonas.create');
     }
 
     /**
@@ -35,18 +36,24 @@ class ZonaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre_zona'=>'required'
+        ]);
+
+        Zona::create($request->all());
+
+        return redirect()->route('zonas.index')->with('success','Zona creado con éxito.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Zonas  $zonas
+     * @param  \App\Zona  $zona
      * @return \Illuminate\Http\Response
      */
-    public function show(Zonas $zonas)
+    public function show(Zona $zona)
     {
-        //
+        return view('zonas.show',compact('zona'));
     }
 
     /**
@@ -55,9 +62,9 @@ class ZonaController extends Controller
      * @param  \App\Zonas  $zonas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Zonas $zonas)
+    public function edit(Zona $zona)
     {
-        //
+        return view('zonas.edit', compact('zona'));
     }
 
     /**
@@ -67,9 +74,14 @@ class ZonaController extends Controller
      * @param  \App\Zonas  $zonas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Zonas $zonas)
+    public function update(Request $request, Zona $zona)
     {
-        //
+        $request->validate([
+            'nombre_zona'=>'required'
+        ]);
+
+        $zona->update($request->all());
+        return redirect()->route('zonas.index')->with('success','zona actualizado correctamente.');
     }
 
     /**
@@ -78,8 +90,9 @@ class ZonaController extends Controller
      * @param  \App\Zonas  $zonas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Zonas $zonas)
+    public function destroy(Zona $zona)
     {
-        //
+        $zona->delete();
+        return redirect()->route('zonas.index')->with('success','zona eliminado correctamente.');
     }
 }
