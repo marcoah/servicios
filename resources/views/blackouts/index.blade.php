@@ -32,11 +32,9 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">nombre_zona</th>
-                                    <th scope="col">ciudad</th>
-                                    <th scope="col">parroquia</th>
-                                    <th scope="col">municipio</th>
-                                    <th scope="col">estado</th>
+                                    <th scope="col">Zona</th>
+                                    <th scope="col">Inicio</th>
+                                    <th scope="col">Final</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
@@ -44,11 +42,9 @@
                                 @foreach($blackouts as $blackout)
                                 <tr>
                                     <td>{{$blackout->id}}</td>
-                                    <td>{{$blackout->nombre_zona}}</td>
-                                    <td>{{$blackout->ciudad}}</td>
-                                    <td>{{$blackout->parroquia}}</td>
-                                    <td>{{$blackout->municipio}}</td>
-                                    <td>{{$blackout->estado}}</td>
+                                    <td>{{$blackout->zona->nombre_zona}}</td>
+                                    <td>{{$blackout->FechaInicio}} {{$blackout->HoraInicio}}</td>
+                                    <td>{{$blackout->FechaFinal}} {{$blackout->HoraFinal}}</td>
                                     <td style="width: 140px;">
                                         @can('Eliminar apagon')
                                             <a class="btn btn-danger btn-sm" href="" data-toggle="modal" data-target="#modalEliminar{{$blackout->id}}" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a>

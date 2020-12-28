@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Blackout;
+use App\Zona;
 use Illuminate\Http\Request;
 
 class BlackoutController extends Controller
@@ -25,7 +26,8 @@ class BlackoutController extends Controller
      */
     public function create()
     {
-        //
+        $zonas = Zona::All();
+        return view('blackouts.create', compact('zonas'));
     }
 
     /**
@@ -36,7 +38,17 @@ class BlackoutController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'zona_id'=>'required',
+            'FechaInicio'=>'required',
+            'HoraInicio'=>'required',
+            'FechaFinal'=>'required',
+            'HoraFinal'=>'required'
+        ]);
+
+        Blackout::create($request->all());
+
+        return redirect()->route('blackouts.index')->with('success','Apagon creado con éxito.');
     }
 
     /**
