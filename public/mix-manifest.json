@@ -11,5 +11,6 @@
     "/js/jquery.dataTables.min.js": "/js/jquery.dataTables.min.js",
     "/js/dataTables.bootstrap4.min.js": "/js/dataTables.bootstrap4.min.js",
     "/css/jquery.dataTables.min.css": "/css/jquery.dataTables.min.css",
-    "/css/dataTables.bootstrap4.min.css": "/css/dataTables.bootstrap4.min.css"
+    "/css/dataTables.bootstrap4.min.css": "/css/dataTables.bootstrap4.min.css",
+    "/lang/datatables-es.json": "/lang/datatables-es.json"
 }

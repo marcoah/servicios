@@ -5,7 +5,11 @@
     "Login": "Acceder",
     "Forgot Your Password?": "¿Olvidaste tu contraseña?",
     "Register": "Registro",
+    "Cancel": "Cancelar",
     "Name": "Nombre",
+    "Username": "Usuario",
+    "FirstName": "Nombre",
+    "LastName": "Apellido",
     "Confirm Password": "Confirmar contraseña",
     "Reset Password": "Restablecer contraseña",
     "Reset Password Notification": "Aviso para restablecer contraseña",
@@ -17,10 +21,9 @@
     "Whoops!": "¡Ups!",
     "Hello!": "¡Hola!",
     "If you’re having trouble clicking the \":actionText\" button, copy and paste the URL below\ninto your web browser: [:actionURL](:actionURL)": "Si tienes problemas haciendo click en el botón \":actionText\", copia y pega el siguiente\nenlace en tu navegador: [:actionURL](:actionURL)",
-    "If you’re having trouble clicking the \":actionText\" button, copy and paste the URL below\ninto your web browser: [:displayableActionUrl](:actionURL)": "Si tienes problemas haciendo click en el botón \":actionText\", copia y pega el siguiente\nenlace en tu navegador: [:displayableActionUrl](:actionURL)",
-    "If you’re having trouble clicking the \":actionText\" button, copy and paste the URL below\ninto your web browser:": "Si tienes problemas haciendo click en el botón \":actionText\", copia y pega el siguiente\nenlace en tu navegador:",
     "Send Password Reset Link": "Enviar enlace para restablecer contraseña",
     "Logout": "Cerrar sesión",
+    "ModalLogout": "Seleccione 'cerrar sesión' abajo en esta ventana si estas listo para terminar la sesión actual de trabajo.",
     "Verify Email Address": "Confirmar correo electrónico",
     "Please click the button below to verify your email address.": "Por favor pulsa el siguiente botón para confirmar tu correo electrónico.",
     "If you did not create an account, no further action is required.": "Si no has creado ninguna cuenta, puedes ignorar o eliminar este e-mail.",
@@ -29,5 +32,6 @@
     "Before proceeding, please check your email for a verification link.": "Antes de poder continuar, por favor, confirma tu correo electrónico con el enlace que te hemos enviado.",
     "If you did not receive the email": "Si no has recibido el email",
     "click here to request another": "pulsa aquí para que te enviemos otro",
-    "All rights reserved.":  "Todos los derechos reservados."
+    "All rights reserved.":  "Todos los derechos reservados.",
+    "Ready to Leave?": "¿Listo para cerrar?"
 }

@@ -19,6 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function	() {
@@ -27,7 +29,9 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function	() {
     Route::get('/profile', 'HomeController@profile')->name('profile');
     Route::get('/settings', 'HomeController@settings')->name('settings');
 
+    Route::get('zonas/list', 'ZonaController@getZonas')->name('zonas.list');
     Route::resource('zonas', 'ZonaController');
+
     Route::resource('blackouts', 'BlackoutController');
 
 });
