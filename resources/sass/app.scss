@@ -2,7 +2,10 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
-@import 'variables';
+// @import 'variables';
+
+// Import Custom SB Admin 2 Variables (Overrides Default Bootstrap Variables)
+@import "sb-admin/variables.scss";
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -12,3 +15,19 @@
 @import '~@fortawesome/fontawesome-free/scss/solid.scss';
 @import '~@fortawesome/fontawesome-free/scss/brands.scss';
 @import '~@fortawesome/fontawesome-free/scss/regular.scss';
+
+//sb-admin
+// Import Custom SB Admin 2 Mixins and Components
+@import "sb-admin/mixins.scss";
+@import "sb-admin/global.scss";
+@import "sb-admin/utilities.scss";
+
+// Custom Components
+@import "sb-admin/dropdowns.scss";
+@import "sb-admin/navs.scss";
+@import "sb-admin/buttons.scss";
+@import "sb-admin/cards.scss";
+@import "sb-admin/charts.scss";
+@import "sb-admin/login.scss";
+@import "sb-admin/error.scss";
+@import "sb-admin/footer.scss";

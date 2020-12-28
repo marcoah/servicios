@@ -26,5 +26,6 @@ mix.copy('node_modules/chart.js/dist/Chart.min.js', 'public/js/Chart.min.js');
 
 //Archivos Datatables
 mix.copy('node_modules/datatables.net/js/jquery.dataTables.min.js', 'public/js/jquery.dataTables.min.js');
+mix.copy('node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js', 'public/js/dataTables.bootstrap4.min.js');
 mix.copy('node_modules/datatables.net-dt/css/jquery.dataTables.min.css', 'public/css/jquery.dataTables.min.css');
-mix.copy('node_modules/chart.js/dist/Chart.min.js', 'public/js/dataTables.bootstrap4.min.js');
+mix.copy('node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css', 'public/css/dataTables.bootstrap4.min.css');
