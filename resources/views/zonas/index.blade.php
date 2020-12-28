@@ -3,7 +3,6 @@
 @section('styles')
     <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <!--<link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">-->
-    <link href="{{ asset('css/buttons.bootstrap4.min.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -99,7 +98,6 @@
 
 <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/buttons.bootstrap4.min.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         var table = $('#tablazonas').DataTable( {
