@@ -2,7 +2,8 @@
 
 @section('styles')
     <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet">
-    <!-- <link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet"> -->
+    <!--<link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">-->
+    <link href="{{ asset('css/buttons.bootstrap4.min.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -43,32 +44,54 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($zonas as $zona)
+                            <tr>
+                                <td>{{$zona->id}}</td>
+                                <td>{{$zona->nombre_zona}}</td>
+                                <td>{{$zona->ciudad}}</td>
+                                <td>{{$zona->parroquia}}</td>
+                                <td>{{$zona->municipio}}</td>
+                                <td>{{$zona->estado}}</td>
+                                <td style="width: 140px;">
+                                    @can('Eliminar zonas')
+                                        <a class="btn btn-danger btn-sm" href="" data-toggle="modal" data-target="#modalEliminar{{$zona->id}}" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a>
+                                    @endcan
+                                    <a class="btn btn-primary btn-sm" href="{{ route('zonas.show',$zona->id) }}" data-toggle="tooltip" data-placement="top" title="Mostrar"><i class="fas fa-eye"></i></a>
+                                    <a class="btn btn-success btn-sm" href="{{ route('zonas.edit',$zona->id) }}" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
+                                </td>
+                            </tr>
+
+                            <!-- modalEliminar se muestra al hacer click en boton de borrar ------>
+                            <div class="modal fade" id="modalEliminar{{$zona->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header d-flex justify-content-center">
+                                            <h4>Eliminar Registro</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-center">Está seguro(a) de eliminar el cliente {{$zona->nombre}} / ID: {{$zona->id}}?</p>
+                                        </div>
+                                        <div class="modal-footer d-flex justify-content-center">
+                                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+                                            <form action="{{ route('zonas.destroy', $zona->id)}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger btn-sm" type="submit" data-toggle="tooltip" data-placement="top" title="Borrar"><i class="fas fa-trash-alt"></i> Borrar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!--fin modal-->
+                            @endforeach
                         </tbody>
                     </table>
+                    {{ $zonas->links() }}
                 </div>
             <div>
         </div>
 
 
-        <!-- modalEliminar se muestra al hacer click en boton de borrar ------>
-        <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header d-flex justify-content-center">
-                        <h4>Eliminar Registro</h4>
-                    </div>
-                    <div class="modal-body"></div>
-                    <div class="modal-footer d-flex justify-content-center">
-                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
-                        <form action="{{ route('zonas.destroy', @id ) }}" method="post">
-                        @csrf
-                        @method("DELETE")
-                        <button class='btn btn-danger btn-sm' type='submit' data-toggle='tooltip' data-placement='top' title='Borrar'><i class='fas fa-trash-alt'></i> Borrar</button>
-                    </form>
-                    </div>
-                </div>
-            </div>
-        </div><!--fin modal-->
+
     </div>
 @endsection
 
@@ -76,61 +99,16 @@
 
 <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
-<script>
-
-    function mostrarmodal(id){
-        var texto1 = '<p class="text-center">Está seguro(a) de eliminar el cliente  / ID: '+ id +' ?</p>';
-
-        texto1= texto1 + "<button type='button' class='btn btn-secondary btn-sm' onclick='borrarzona("+ id +")'>mostrar</button>"
-
-        $('.modal-body').html(texto1);
-        $('#modalEliminar').modal({show:true});
-
-    }
-
-    function borrarzona(id){
-        var deletePostUri = '{{ route("zonas.destroy","temp")}}';
-        deletePostUri= deletePostUri.replace("temp",id)
-        var token = $("meta[name='csrf-token']").attr("content");
-
-        console.log(deletePostUri)
-        console.log(token)
-        console.log(id)
-
-        $.ajax({
-            type: "DELETE",
-            url: deletePostUri,
-            data: {
-                "id": id,
-                "_token": token,
-            },
-            success: function (data) {
-                table.ajax.reload();
-            },
-            error: function (data) {
-                console.log('Error:', data);
-            }
+<script type="text/javascript" src="{{ asset('js/buttons.bootstrap4.min.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var table = $('#tablazonas').DataTable( {
+            paging: false,
+            info: false,
+            language: {
+                url: 'lang/datatables-es.json'
+                }
         });
-    }
-
-    $(function () {
-        var table = $('#tablazonas').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: "{{ route('zonas.list') }}",
-            "language": {
-                "url": "lang/datatables-es.json"
-            },
-            columns: [
-                {data: 'id', name: 'id'},
-                {data: 'nombre_zona', name: 'nombre_zona'},
-                {data: 'ciudad', name: 'ciudad'},
-                {data: 'parroquia', name: 'parroquia'},
-                {data: 'municipio', name: 'municipio'},
-                {data: 'estado', name: 'estado'},
-                {data: 'action', name: 'action', orderable: false, searchable: false},
-            ]
-        });
-    });
+    } );
 </script>
 @endsection
