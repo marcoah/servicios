@@ -14,7 +14,8 @@ class BlackoutController extends Controller
      */
     public function index()
     {
-        //
+        $blackouts = Blackout::orderBy('id', 'asc')->paginate(10);
+        return view('blackouts.index',compact('blackouts'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
