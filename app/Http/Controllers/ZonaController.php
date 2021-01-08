@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Zona;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\Auth;
 
 class ZonaController extends Controller
 {
@@ -94,5 +96,27 @@ class ZonaController extends Controller
     {
         $zona->delete();
         return redirect()->route('zonas.index')->with('success','zona eliminado correctamente.');
+    }
+
+    public function getZonas(Request $request)
+    {
+        $data = Zona::latest()->get();
+
+        return Datatables::of($data)
+        ->addIndexColumn()
+        ->addColumn('action', function($zona){
+            $actionBtn = "<a class='btn btn-success btn-sm' href=". route('zonas.edit',$zona->id) ."><i class='fas fa-edit'></i></a>";
+            $actionBtn = $actionBtn ." <a class='btn btn-primary btn-sm' href=".route('zonas.show',$zona->id)." data-toggle='tooltip' data-placement='top' title='Mostrar'><i class='fas fa-eye'></i></a>";
+
+            $user = Auth::user();
+            if ($user->can('Eliminar Zona')){
+                $actionBtn = $actionBtn ." <a class='btn btn-danger btn-sm' href='#' onclick='mostrarmodal(".$zona->id.")' data-toggle='tooltip' data-placement='top' title='Eliminar'><i class='fas fa-trash-alt'></i></a>";
+            }
+
+            return $actionBtn;
+        })
+        ->rawColumns(['action'])
+        ->make(true);
+
     }
 }

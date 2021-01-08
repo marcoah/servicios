@@ -1,4 +1,16 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/js/sb-admin-2.min.js": "/js/sb-admin-2.min.js",
+    "/js/jquery.easing.min.js": "/js/jquery.easing.min.js",
+    "/js/demo/chart-area-demo.js": "/js/demo/chart-area-demo.js",
+    "/js/demo/chart-bar-demo.js": "/js/demo/chart-bar-demo.js",
+    "/js/demo/chart-pie-demo.js": "/js/demo/chart-pie-demo.js",
+    "/js/jquery.min.js": "/js/jquery.min.js",
+    "/js/Chart.min.js": "/js/Chart.min.js",
+    "/js/jquery.dataTables.min.js": "/js/jquery.dataTables.min.js",
+    "/js/dataTables.bootstrap4.min.js": "/js/dataTables.bootstrap4.min.js",
+    "/css/jquery.dataTables.min.css": "/css/jquery.dataTables.min.css",
+    "/css/dataTables.bootstrap4.min.css": "/css/dataTables.bootstrap4.min.css",
+    "/lang/datatables-es.json": "/lang/datatables-es.json"
 }
